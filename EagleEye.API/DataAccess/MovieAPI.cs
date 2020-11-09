@@ -10,7 +10,7 @@ namespace EagleEye.API.DataAccess
     {
         public List<Movie> GetAllMovies()
         {
-            return File.ReadAllLines($"/metadata.csv")
+            return File.ReadAllLines(@"C:\Users\User\source\repos\EagleEye.API\EagleEye.API\DataAccess\metadata.csv")
                 .Skip(1) // skip field names
                 .Select(v => MapMovies(v))
                 .ToList();

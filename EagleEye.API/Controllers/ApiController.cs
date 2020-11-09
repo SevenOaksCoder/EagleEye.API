@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EagleEye.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ApiController : ControllerBase
     {
@@ -19,17 +19,21 @@ namespace EagleEye.API.Controllers
             _Movies = Movies;
         }
 
-        // GET: api/<ApiController>
-        [HttpGet]
+        [HttpGet("getmovies")]
         public List<Movie> GetMovies()
         {
             var test = _Movies.GetAllMovies();
             return test;
         }
 
-        // POST api/<ApiController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("getmovie/{id}")]
+        public void GetMovie(int id)
+        {
+
+        }
+
+        [HttpPost("postmovie")]
+        public void PostMovie([FromBody] string value)
         {
         }
     }
