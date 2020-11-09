@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EagleEye.API.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,35 +13,23 @@ namespace EagleEye.API.Controllers
     [ApiController]
     public class ApiController : ControllerBase
     {
-        // GET: api/<ApiController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IMovieAPI _Movies;
+        public ApiController(IMovieAPI Movies)
         {
-            return new string[] { "value1", "value2" };
+            _Movies = Movies;
         }
 
-        // GET api/<ApiController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET: api/<ApiController>
+        [HttpGet]
+        public List<Movie> GetMovies()
         {
-            return "value";
+            var test = _Movies.GetAllMovies();
+            return test;
         }
 
         // POST api/<ApiController>
         [HttpPost]
         public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<ApiController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ApiController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
         {
         }
     }
