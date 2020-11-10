@@ -9,6 +9,6 @@ namespace EagleEye.API.DataAccess
     {
         List<Movie> GetAllMovies();
         Movie GetMovieById(int MovieId);
-        Movie NewMovie(Movie movie);
+        void NewMovie(Movie movie);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,19 +23,21 @@ namespace EagleEye.API.Controllers
         [HttpGet("getmovies")]
         public List<Movie> GetMovies()
         {
-            var test = _Movies.GetAllMovies();
-            return test;
+            var movies = _Movies.GetAllMovies();
+            return movies;
         }
 
         [HttpGet("getmovie/{id}")]
-        public void GetMovie(int id)
+        public Movie GetMovie(int id)
         {
-
+            var movie = _Movies.GetMovieById(id);
+            return movie;
         }
 
         [HttpPost("postmovie")]
-        public void PostMovie([FromBody] string value)
+        public void PostMovie([FromBody] Movie movie)
         {
+            _Movies.NewMovie(movie);
         }
     }
 }
