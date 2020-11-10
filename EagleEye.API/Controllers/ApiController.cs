@@ -28,10 +28,18 @@ namespace EagleEye.API.Controllers
         }
 
         [HttpGet("getmovie/{id}")]
-        public Movie GetMovie(int id)
+        public ActionResult<Movie> GetMovie(int id)
         {
             var movie = _Movies.GetMovieById(id);
-            return movie;
+            if (movie != null)
+            {
+                return movie;
+            }
+            else
+            {
+                return NotFound();
+            }
+            
         }
 
         [HttpPost("postmovie")]
